@@ -57,8 +57,9 @@ results16 = Fido.search(tr, a.Instrument.xrs & a.goes.SatelliteNumber(16) & a.Re
 from sunpy.timeseries import TimeSeries
 
 ## Additional code to prevent warning messages in Windows
-import asyncio
-asyncio.set_event_loop_policy(asyncio.WindowsSelectorEventLoopPolicy())
+import asyncio, sys
+if sys.platform.startswith("win"):
+    asyncio.set_event_loop_policy(asyncio.WindowsSelectorEventLoopPolicy())
 
 # Download the XRS data and load it into a TimeSeries, convert to a 
 # dataframe for easier manipulation, and find the max values
